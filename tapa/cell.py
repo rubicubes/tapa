@@ -1,5 +1,7 @@
 class Cell:
-	def __init__(self):
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
 		self.value = None
 		self.is_seed = False
 

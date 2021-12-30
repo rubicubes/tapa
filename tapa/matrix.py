@@ -8,11 +8,17 @@ class Matrix:
 		for i in range(x):
 			n = []
 			for j in range(y):
-				n.append(Cell())
+				n.append(Cell(i, j))
 			self.m.append(n)
-		self.seeding()
+		self.seed()
 
-	def seeding(self):
+	def cell(self, x, y):
+		if 0 <= x <= self.x - 1 and 0 <= y <= self.y - 1:
+			return self.m[x][y]
+		else:
+			return None
+
+	def seed(self):
 		self.m[0][9].set('2')
 		self.m[1][1].set('3,1')
 		self.m[1][5].set('4,2')
@@ -32,3 +38,18 @@ class Matrix:
 			for j in range(self.y):
 				self.m[i][j].print()
 			print('')
+
+	def surroundings(self, x, y):
+		ss = []
+		stack = []
+		offsets = [[-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]]
+		for offset in offsets:
+			cell = self.cell(x + offset[0], y + offset[1])
+			if cell == None:
+				if not stack and ss:
+					stack, ss[:] = ss[:], []
+			else:
+				ss.append(cell)
+		if stack:
+			ss.extend(stack)
+		return ss
