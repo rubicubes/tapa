@@ -17,3 +17,6 @@ class Cell:
 			print('?', end='')
 		else:
 			print(self.value, end='')
+
+	def inspect(self):
+		print(self, self.x, self.y)
