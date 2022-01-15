@@ -2,6 +2,7 @@ import itertools
 import random
 from collections import defaultdict
 
+
 class Graph:
     def __init__(self, cells):
         self.cells = cells
